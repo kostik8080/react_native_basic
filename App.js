@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from './src/login';
+import Menu from './src/menu';
+
+const Stack = createNativeStackNavigator();
+
+console.log('Web app is loading');
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#FF69B4', // Ярко розовый фон заголовка
+            height: 70, // Уменьшенная высота заголовка
+          },
+          headerTintColor: '#FFFFFF', // Белый цвет заголовка
+          headerTitleStyle: {
+            fontSize: 18, // Уменьшенный размер текста заголовка
+            fontWeight: 'bolt',
+          },
+        }}
+      >
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ title: 'Добро пожаловать' }}
+        />
+        <Stack.Screen
+          name="Menu"
+          component={Menu}
+          options={{ title: 'Меню'}}
+        />    
+      </Stack.Navigator>
+      <StatusBar style="ayto" />  
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
