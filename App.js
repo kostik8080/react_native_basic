@@ -1,8 +1,10 @@
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/login';
 import Menu from './src/menu';
+import Map from './src/map';
+import Swipe from './src/swipe';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,31 +14,41 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Login" 
         screenOptions={{
           headerStyle: {
             backgroundColor: '#FF69B4', // Ярко розовый фон заголовка
             height: 70, // Уменьшенная высота заголовка
           },
-          headerTintColor: '#FFFFFF', // Белый цвет заголовка
+          headerTintColor: '#FFFFFF', // Белый цвет текста заголовка
           headerTitleStyle: {
             fontSize: 18, // Уменьшенный размер текста заголовка
-            fontWeight: 'bolt',
+            fontWeight: 'bold',
           },
         }}
       >
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{ title: 'Добро пожаловать' }}
+          options={{ title: 'Добро пожаловать!' }}
         />
         <Stack.Screen
           name="Menu"
           component={Menu}
-          options={{ title: 'Меню'}}
-        />    
+          options={{ title: 'Меню' }}
+        />
+        <Stack.Screen
+          name="Map"
+          component={Map}
+          options={{ title: 'Карта' }}
+        />
+        <Stack.Screen
+          name="Swipe"
+          component={Swipe}
+          options={{ title: 'Свайп' }}
+        />
       </Stack.Navigator>
-      <StatusBar style="ayto" />  
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
